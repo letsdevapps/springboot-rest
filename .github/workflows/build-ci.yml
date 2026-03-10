@@ -1,0 +1,53 @@
+name: Build and Test Spring Boot Rest
+
+# Pode rodar manualmente ou em push
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Pega o código do repo
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # Setup Java
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 21
+
+      # Cache do Maven (opcional, acelera builds)
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      # Build com Maven
+      - name: Build with Maven
+        run: mvn clean install --no-transfer-progress
+
+      # Run tests
+      - name: Run tests
+        run: mvn test
+
+      # Listar arquivos no target (debug)
+      - name: List target folder
+        run: ls -R target/
+
+      # Arquivos gerados (opcional)
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: springboot-rest
+          path: target/*.jar

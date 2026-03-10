@@ -33,3 +33,9 @@ public class ProductApi {
 		return ResponseEntity.ok(productService.getProductList());
 	}
 }
+
+//GET    /users        -> lista
+//GET    /users/{id}   -> busca
+//POST   /users        -> cria
+//PUT    /users/{id}   -> atualiza
+//DELETE /users/{id}   -> remove
