@@ -6,7 +6,6 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,9 +34,9 @@ public class HomeApi {
 		return ResponseEntity.ok(homeService.getInt());
 	}
 
-	@PostMapping("/post-int")
+	@GetMapping("/get-int-param")
 	public ResponseEntity<String> postInt(@RequestParam int val) {
-		return ResponseEntity.ok("POST: " + val);
+		return ResponseEntity.ok("GET: " + val);
 	}
 
 	@GetMapping("/get-date")
@@ -45,7 +44,7 @@ public class HomeApi {
 		return ResponseEntity.ok(homeService.getLocalDate());
 	}
 
-	@PostMapping("/post-date")
+	@GetMapping("/get-date-param")
 	public ResponseEntity<String> postDate(@RequestParam String dat) {
 		try {
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
