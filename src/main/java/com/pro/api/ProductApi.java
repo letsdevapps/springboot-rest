@@ -5,11 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pro.model.Product;
 import com.pro.service.ProductService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/product")
@@ -26,6 +30,12 @@ public class ProductApi {
 	@GetMapping("/prod")
 	public ResponseEntity<Product> getProduct() {
 		return ResponseEntity.ok(productService.getProduct());
+	}
+
+	@PostMapping("/prod")
+	public ResponseEntity<Product> createProduct(@Valid @RequestBody Product request) {
+		Product created = productService.createProduct(request);
+	    return ResponseEntity.status(201).body(created); //201 created
 	}
 
 	@GetMapping("/prod-list")
