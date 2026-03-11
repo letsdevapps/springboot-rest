@@ -43,4 +43,25 @@ public class ProductService {
 
 		return pList;
 	}
+
+	public Product createProduct(Product request) {
+
+		if (request.getId() == null) {
+			throw new RuntimeException("ID is null");
+		}
+
+		if (request.getName() == null) {
+			throw new RuntimeException("Name is null");
+		}
+
+		if (request.getPrice() == null) {
+			throw new RuntimeException("Price is null");
+		}
+
+		Product p = new Product(request.getId(), request.getName(), request.getPrice(), LocalDate.now(),
+				LocalDate.now(), true);
+
+		//pList.add(p);
+		return p;
+	}
 }
