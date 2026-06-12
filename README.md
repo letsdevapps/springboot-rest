@@ -1,5 +1,9 @@
 # Springboot Rest
 
+![GitHub release](https://img.shields.io/github/v/release/letsdevapps/springboot-rest)
+![GitHub last commit](https://img.shields.io/github/last-commit/letsdevapps/springboot-rest)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/letsdevapps/springboot-rest/build-ci.yml)
+
 ## Docker
 
     docker build -t springboot-rest .
