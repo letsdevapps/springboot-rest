@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pro.service.HomeService;
 
 @RestController
-@RequestMapping("/api/home")
+@RequestMapping({"", "/", "/api", "/api/home"})
 public class HomeApi {
 
 	@Autowired
@@ -21,7 +21,7 @@ public class HomeApi {
 
 	@GetMapping({ "", "/" })
 	public String index() {
-		return "Api Home está acessível!";
+		return "----- Springboot Rest | Home API | Root Index -----";
 	}
 
 	@GetMapping("/lorem-ipsum")
