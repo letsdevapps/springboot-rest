@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot
+  template:
+    metadata:
+      labels:
+        app: springboot
+    spec:
+      containers:
+        - name: springboot-container
+          #image: springboot-rest:latest
+          #imagePullPolicy: Never
+          image: ghcr.io/letsdevapps/springboot-rest:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
