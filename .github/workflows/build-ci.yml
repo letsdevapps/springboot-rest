@@ -1,4 +1,4 @@
-name: Build and Test Spring Boot Rest
+name: CI Spring Boot Rest
 
 on:
   push:
@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-
-permissions:
-  contents: write
-  packages: write
 
 jobs:
   build:
@@ -39,42 +35,15 @@ jobs:
         run: mvn clean install --no-transfer-progress
 
       - name: Run tests
-        run: mvn test
+        run: mvn clean test
 
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: springboot-rest
-          path: target/*.jar
+      #- name: Upload build artifacts
+      #  uses: actions/upload-artifact@v4
+      #  with:
+      #    name: springboot-rest
+      #    path: target/*.jar
 
-      - name: Login no GHCR
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Configurar Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build e Push da imagem
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest
-
-      - name: Criar tag
-        run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@github.com"
-          git tag v${{ github.run_number }}
-          git push origin v${{ github.run_number }}
-
-      - name: Criar Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ github.run_number }}
-          name: Release v${{ github.run_number }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # So roda no PR (CI)
+      #- name: Stop if PR
+      #  if: github.event_name == 'pull_request'
+      #  run: echo "PR build only - stopping here"
