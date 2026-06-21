@@ -35,3 +35,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Terraform state
+terraform.tfstate
+*.tfstate.*
+terraform.tfstate.backup
+
+# Terraform directory
+.terraform/
+
+# Crash logs
+crash.log
+
+# CLI config
+.terraform.lock.hcl
