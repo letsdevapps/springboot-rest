@@ -4,6 +4,15 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/letsdevapps/springboot-rest)
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/letsdevapps/springboot-rest/build-ci.yml)
 
+![Java](https://img.shields.io/badge/Java-21+-green)
+![Springboot](https://img.shields.io/badge/Springboot-3+-green)
+![Docker](https://img.shields.io/badge/Docker-enabled-blue)
+![CI](https://img.shields.io/badge/CI-enabled-blue)
+![CD](https://img.shields.io/badge/CD-enabled-blue)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-enabled-blue)
+![Terraform](https://img.shields.io/badge/Terraform-enabled-blue)
+![Status](https://img.shields.io/badge/status-active-success)
+
 ## Docker
 
     docker build -t springboot-rest .
