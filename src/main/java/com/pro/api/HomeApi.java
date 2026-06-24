@@ -20,8 +20,8 @@ public class HomeApi {
 	private HomeService homeService;
 
 	@GetMapping({ "", "/" })
-	public String index() {
-		return "----- Springboot Rest | Home API | Root Index -----";
+	public ResponseEntity<String> index() {
+		return ResponseEntity.ok("----- Springboot Rest | Home API | Root Index -----");
 	}
 
 	@GetMapping("/lorem-ipsum")
