@@ -2,15 +2,18 @@
 
 ![GitHub release](https://img.shields.io/github/v/release/letsdevapps/springboot-rest)
 ![GitHub last commit](https://img.shields.io/github/last-commit/letsdevapps/springboot-rest)
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/letsdevapps/springboot-rest/build-ci.yml)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/letsdevapps/springboot-rest/build-ci.yml?label=status%20integration)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/letsdevapps/springboot-rest/build-cd.yml?label=status%20deployment)
 
-![Java](https://img.shields.io/badge/Java-21+-green)
-![Springboot](https://img.shields.io/badge/Springboot-3+-green)
-![Docker](https://img.shields.io/badge/Docker-enabled-blue)
-![CI](https://img.shields.io/badge/CI-enabled-blue)
-![CD](https://img.shields.io/badge/CD-enabled-blue)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-enabled-blue)
-![Terraform](https://img.shields.io/badge/Terraform-enabled-blue)
+![Java](https://img.shields.io/badge/java-21+-brightgreen)
+![Springboot](https://img.shields.io/badge/springboot-3+-brightgreen)
+![JUnit](https://img.shields.io/badge/junit-enabled-blue)
+
+![Docker](https://img.shields.io/badge/docker-enabled-blue)
+![CI](https://img.shields.io/badge/ci-enabled-blue)
+![CD](https://img.shields.io/badge/cd-enabled-blue)
+![Kubernetes](https://img.shields.io/badge/kubernetes-enabled-blue)
+![Terraform](https://img.shields.io/badge/terraform-enabled-blue)
 ![Status](https://img.shields.io/badge/status-active-success)
 
 ## Docker
@@ -55,6 +58,34 @@ Como rodar
     kubectl get svc
     kubectl get ingress
     kubectl get endpoints
+
+## Terraform
+
+Verificar se Minikube esta rodando
+
+	minikube status
+
+Verificar se Ingress esta ativo no Minikube
+
+	minikube addons list
+	
+	minikube addons enable ingress
+
+Entrar na pasta `terraform` e inicializar
+
+	cd terraform
+	
+	terraform init
+
+	terraform plan
+
+Executar o setup
+
+	terraform apply
+
+Apagar o setup
+
+	terraform destroy
 
 ## API
 
