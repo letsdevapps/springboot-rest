@@ -12,14 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pro.service.HomeService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping({"", "/", "/api", "/api/home"})
+@Tag(name = "Home", description = "Operations related to Home Index API")
 public class HomeApi {
 
 	@Autowired
 	private HomeService homeService;
 
 	@GetMapping({ "", "/" })
+	@Operation(summary = "Return the index health check status of the application")
 	public ResponseEntity<String> index() {
 		return ResponseEntity.ok("----- Springboot Rest | Home API | Root Index -----");
 	}
