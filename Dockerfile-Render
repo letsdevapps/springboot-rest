@@ -24,7 +24,7 @@ ARG RENDER_GIT_COMMIT
 
 ENV RUNTIME_COMMIT_SHA=${RENDER_GIT_COMMIT}
 
-RUN mvn clean package -DskipTests -Dgit.commit.id.skip=true
+RUN mvn clean package -DskipTests -Dmaven.gitcommitid.skip=true
 
 EXPOSE 8080
 
