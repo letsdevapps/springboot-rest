@@ -22,6 +22,28 @@
     
     docker run --rm -it -p 8080:8080 --name springboot-rest springboot-rest
 
+### Dockerfile-Render
+
+O projeto possui um `Dockerfile-Render` separado do `Dockerfile` principal por uma particularidade do ambiente de build do Render.
+
+No ambiente local e no GitHub Actions, o repositório Git está disponível durante o build, incluindo o diretório `.git`. Isso permite que o `git-commit-id-maven-plugin` obtenha informações como commit e branch.
+
+No build realizado pelo Render, o contexto disponibilizado para o Docker não contém o diretório `.git`. Portanto, não é possível utilizar `COPY .git` nem depender do `git-commit-id-maven-plugin` para descobrir o commit durante esse build.
+
+Para resolver isso, o `Dockerfile-Render` utiliza a variável `RENDER_GIT_COMMIT`, fornecida pelo próprio Render:
+
+```text
+RENDER_GIT_COMMIT
+        ↓
+Dockerfile-Render
+        ↓
+RUNTIME_COMMIT_SHA
+        ↓
+Spring Boot
+        ↓
+GET /api/git/version
+```
+
 ## Kubernetes (Minikube)
 
 Como rodar
