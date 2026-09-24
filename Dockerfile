@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY pom.xml .
 COPY src /app/src
+COPY .git ./.git
 
 RUN mvn clean package -DskipTests
 
