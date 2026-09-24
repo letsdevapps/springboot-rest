@@ -1,0 +1,31 @@
+# -----------------------------------------------------------------------------
+# Dockerfile específico para o Render.
+#
+# Diferente do build local/CI, o contexto Docker fornecido pelo Render não
+# contém o diretório .git. Por isso, o git-commit-id-maven-plugin não consegue
+# obter as informações do repositório durante o build.
+#
+# O Render disponibiliza o SHA do commit através de RENDER_GIT_COMMIT.
+# Transformamos esse valor em uma variável de ambiente de runtime para que
+# a aplicação possa expor o commit atualmente implantado pela API.
+#
+# Não utilizar COPY .git neste Dockerfile.
+# -----------------------------------------------------------------------------
+
+
+FROM maven:latest
+
+WORKDIR /app
+
+COPY pom.xml .
+COPY src /app/src
+
+ARG RENDER_GIT_COMMIT
+
+ENV RUNTIME_COMMIT_SHA=${RENDER_GIT_COMMIT}
+
+RUN mvn clean package -DskipTests
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "target/pro-0.0.1-SNAPSHOT.jar"]
